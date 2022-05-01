@@ -1,5 +1,7 @@
 package com.webservices.calculator.lovecalculator;
 
+import java.util.Random;
+
 public class Love {
 
      private String nameFirst;
@@ -11,8 +13,8 @@ public class Love {
           this.nameSecond = nameSecond;
      }
 
-     public int calculate(){
-          return 0;
+     public double calculate(){
+          return Math.random();
      }
 
      public String getNameFirst() {
