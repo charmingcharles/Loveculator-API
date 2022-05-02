@@ -2,6 +2,7 @@ package com.webservices.calculator.lovecalculator.controller;
 
 import com.webservices.calculator.lovecalculator.APIKeyGenerator;
 import com.webservices.calculator.lovecalculator.Love;
+import com.webservices.calculator.lovecalculator.exception.ResourceNotFoundException;
 import com.webservices.calculator.lovecalculator.form.LoveForm;
 import com.webservices.calculator.lovecalculator.model.Key;
 import com.webservices.calculator.lovecalculator.repository.KeyRepository;
@@ -13,6 +14,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class LoveController {
@@ -39,6 +41,8 @@ public class LoveController {
 
     @PostMapping("/calculate")
     public Map<String,Object> calculateDetailedLove(@Valid @RequestBody LoveForm loveForm) {
+        Optional.ofNullable(keyRepository.getByKey(loveForm.getApiKey()))
+                .orElseThrow(() -> new ResourceNotFoundException("API key not found!"));
         Map<String,Object> returnJSON = new HashMap<>();
         Love love = new Love(loveForm.getNameFirst(), loveForm.getNameSecond());
         returnJSON.put("names", love);

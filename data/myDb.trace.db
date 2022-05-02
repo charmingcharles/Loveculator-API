@@ -1,0 +1,33 @@
+2022-05-01 23:21:52 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE KEYS  
+    ID[*] INT NOT NULL PRIMARY KEY ,
+    KEY VARCHAR(16)
+ "; SQL statement:
+CREATE TABLE KEYS  
+    ID INT NOT NULL PRIMARY KEY ,
+    KEY VARCHAR(16)
+  [42000-200]
+2022-05-01 23:22:05 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE KEYS  
+    ID[*] INT NOT NULL PRIMARY KEY,
+    KEY VARCHAR(16)
+ "; SQL statement:
+CREATE TABLE KEYS  
+    ID INT NOT NULL PRIMARY KEY,
+    KEY VARCHAR(16)
+  [42000-200]
+2022-05-01 23:22:58 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE KEYS  
+    ID[*] INT PRIMARY KEY,
+    KEY VARCHAR(16)
+ "; SQL statement:
+CREATE TABLE KEYS  
+    ID INT PRIMARY KEY,
+    KEY VARCHAR(16)
+  [42000-200]
+2022-05-02 11:46:38 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "KEY[*]"; SQL statement:
+KEY [42000-200]
+2022-05-02 11:46:39 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "KEY[*]"; SQL statement:
+KEY [42000-200]
