@@ -1,8 +1,9 @@
 package com.webservices.calculator.lovecalculator.controller;
 
-import com.webservices.calculator.lovecalculator.APIKeyGenerator;
-import com.webservices.calculator.lovecalculator.Love;
+import com.webservices.calculator.lovecalculator.generator.APIKeyGenerator;
+import com.webservices.calculator.lovecalculator.calculator.Love;
 import com.webservices.calculator.lovecalculator.exception.ResourceNotFoundException;
+import com.webservices.calculator.lovecalculator.exception.SubscriptionExpiredException;
 import com.webservices.calculator.lovecalculator.form.LoveForm;
 import com.webservices.calculator.lovecalculator.model.Key;
 import com.webservices.calculator.lovecalculator.repository.KeyRepository;
@@ -34,15 +35,19 @@ public class LoveController {
 
     @GetMapping("/generateKey")
     public String generateKey() throws NoSuchAlgorithmException{
-        Key key = new Key(APIKeyGenerator.generate(128));
+        Key key = new Key(APIKeyGenerator.generate(128), 1000);
+        System.out.println("XD");
         keyRepository.save(key);
+        System.out.println("XD");
         return key.getKey();
     }
 
     @PostMapping("/calculate")
     public Map<String,Object> calculateDetailedLove(@Valid @RequestBody LoveForm loveForm) {
-        Optional.ofNullable(keyRepository.getByKey(loveForm.getApiKey()))
+        Key key = Optional.ofNullable(keyRepository.getByKey(loveForm.getApiKey()))
                 .orElseThrow(() -> new ResourceNotFoundException("API key not found!"));
+        if(key.getCallsLeft() <= 0)
+            throw new SubscriptionExpiredException();
         Map<String,Object> returnJSON = new HashMap<>();
         Love love = new Love(loveForm.getNameFirst(), loveForm.getNameSecond());
         returnJSON.put("names", love);
@@ -52,6 +57,9 @@ public class LoveController {
         sb.append("#".repeat(Math.max(0, digitCount)));
         String match = new DecimalFormat(sb.toString()).format(love.calculate());
         returnJSON.put("match", match);
+        int callsLeft = key.getCallsLeft();
+        returnJSON.put("callsLeft:", callsLeft);
+        keyRepository.updateCallsLeft(key.getId(), callsLeft - 1);
         return returnJSON;
     }
 

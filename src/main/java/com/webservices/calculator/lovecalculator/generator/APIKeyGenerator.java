@@ -1,4 +1,4 @@
-package com.webservices.calculator.lovecalculator;
+package com.webservices.calculator.lovecalculator.generator;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;

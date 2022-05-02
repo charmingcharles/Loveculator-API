@@ -1,4 +1,4 @@
-package com.webservices.calculator.lovecalculator;
+package com.webservices.calculator.lovecalculator.calculator;
 
 import java.util.Random;
 
