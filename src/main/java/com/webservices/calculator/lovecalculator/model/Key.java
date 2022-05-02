@@ -2,17 +2,13 @@ package com.webservices.calculator.lovecalculator.model;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
+@Table(name = "KEYS")
 public class Key {
-
-    private static Integer BASE_ID = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +19,6 @@ public class Key {
 
     public Key(String key){
         this.key = key;
-        this.id = BASE_ID++;
     }
 
     protected Key() {
