@@ -4,9 +4,9 @@ Quick, personal project for resume. Made as a joke and as a proof of some of my 
 ## Instruction
 
 For now there are 3 available API calls:
-1. [simple love calculation without key](#simple-love-calculation-without-key) and with path parameters
-2. [key generation](#key-generation)
-3. [post method love calculation with key in request body](#post-method-love-calculation-with-key-in-request-body)
+1. [simple love calculation without key](#simple-love-calculation-without-key) and with path parameters [GET]
+2. [key generation](#key-generation) [GET]
+3. [love calculation with key in request body](#love-calculation-with-key-in-request-body) [POST]
 
 ## simple love calculation without key
 
@@ -42,7 +42,7 @@ Result:
 ```
 And with that we can send fully complete request body. 
 
-## post method love calculation with key in request body
+## love calculation with key in request body
 
 Call:
 ```
@@ -76,4 +76,4 @@ Unknown arguments:
 - callsLeft - you are asigned with 1000 available calls, if this variable reaches 0 you will have to generate a new API key
 
 ## matching potential
-The Algorithm. 
+The Algorithm. Value which is returned is a random floating point number between 0 and 1. Even if names are the same the numbers will differ. 
