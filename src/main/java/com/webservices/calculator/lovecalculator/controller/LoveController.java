@@ -36,9 +36,7 @@ public class LoveController {
     @GetMapping("/generateKey")
     public String generateKey() throws NoSuchAlgorithmException{
         Key key = new Key(APIKeyGenerator.generate(128), 1000);
-        System.out.println("XD");
         keyRepository.save(key);
-        System.out.println("XD");
         return key.getKey();
     }
 
